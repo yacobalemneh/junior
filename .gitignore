@@ -1,0 +1,42 @@
+# .gitignore
+
+# Ignore Python build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.egg-info/
+*.eggs/
+
+# Ignore IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore Flask file
+instance/
+
+# Ignore the files already in your .gitignore
+requirements.txt
+TODO.md
+general.md
+features.txt
+com.yacob.junior.plist
