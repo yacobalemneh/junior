@@ -1,9 +1,1 @@
-{
-    "hotwords": [
-        "hey junior",
-        "hey I need help",
-        "junior you there",
-        "could you please junior",
-        "junior I had a question"
-    ]
-}
+{"hotwords": ["hello", "goodbye", "yes", "no"]}

@@ -15,7 +15,7 @@ class Segment:
     no_speech_prob: float
 
 @dataclass
-class TranscriptionResult:
+class Transcription:
     text: str
     segments: List[Segment]
     language: str
@@ -23,4 +23,4 @@ class TranscriptionResult:
     @staticmethod
     def from_dict(data):
         segments = [Segment(**segment) for segment in data["segments"]]
-        return TranscriptionResult(data["text"], segments, data["language"])
+        return Transcription(data["text"], segments, data["language"])

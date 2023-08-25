@@ -1,5 +1,12 @@
 # .gitignore
 
+
+# Special ignore rules.
+com.yacob.junior.plist
+/docs/*
+docs/*
+.env
+
 # Ignore Python build artifacts
 __pycache__/
 *.py[cod]
@@ -34,12 +41,3 @@ Thumbs.db
 # Ignore Flask file
 instance/
 
-# Ignore the files already in your .gitignore
-requirements.txt
-TODO.md
-general.md
-features.txt
-com.yacob.junior.plist
-
-# Ignore docs directory
-/docs/*

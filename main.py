@@ -1,36 +1,45 @@
-from core.interaction.listener import Listener
-from core.task_management.state import State
-from core.transcription.transcription_model import TranscriptionModel
-from core.task_management.task_manager import TaskManager
-from core.hotword_detector.hotword_detector import HotwordDetector
-from core.services.transcription_service.transcription_service import TranscriptionService
 from core.config import Config
-from core.audio.audio_processor import AudioProcessor
-from core.audio.audio_source import AudioSource
-from infrastructure.startup import Startup
-from infrastructure.logging import Logging
+from core.data_source.transcription_model import TranscriptionModel
+from core.domain.models.task_manager import TaskManager
+from core.domain.models.transcription import Transcription
+from core.domain.models.hotword import Hotword
+from core.domain.models.task import Task
+from core.domain.models.conversation import Conversation
+from core.domain.services.model_management_service import ModelManagementService
+from core.domain.services.transcription_service import TranscriptionService
+from core.domain.services.hotword_detection_service import HotwordDetectionService
+from core.domain.services.task_execution_service import TaskExecutionService
+from core.domain.services.conversation_service import ConversationService
+from core.application.interactors.transcription_interactor import TranscriptionInteractor
+from core.application.interactors.hotword_detection_interactor import HotwordDetectionInteractor
+from core.application.interactors.task_execution_interactor import TaskExecutionInteractor
+from core.application.interactors.conversation_interactor import ConversationInteractor
+from core.infrastructure.audio.audio_source import AudioSource
+from core.infrastructure.audio.audio_processor import AudioProcessor
+from core.infrastructure.startup import setup
 
 def main():
-    # Initialize components
-    config = Config()
-    transcription_model = TranscriptionModel(config)
-    task_manager = TaskManager(transcription_model)
+    setup()
+    config = Config()  # You need to define this config
     audio_source = AudioSource()
-    hotword_detector = HotwordDetector(task_manager, transcription_model, audio_source)
-    transcription_service = TranscriptionService(task_manager, transcription_model)
-    hotwords = config.get('hotwords')
     audio_processor = AudioProcessor
-    startup = Startup()
-    logging = Logging()
-    
-    # Load the daemon into the system startup
-    startup.load()
-    task_manager.switch_state(State.IDLE)
-    logging.log("Daemon loaded into system startup")
+    transcription_model = TranscriptionModel()
+    task_manager = TaskManager()
+    model_management_service = ModelManagementService(transcription_model)
+    task_execution_service = TaskExecutionService(task_manager, model_management_service)
+    transcription_service = TranscriptionService(transcription_model)
+    hotword_detection_service = HotwordDetectionService(transcription_model)
+    hotword_detection_interactor = HotwordDetectionInteractor(hotword_detection_service)
+    conversation_service = ConversationService(transcription_service, hotword_detection_interactor, task_execution_service)
+    conversation_interactor = ConversationInteractor(conversation_service)
+    transcription_interactor = TranscriptionInteractor(transcription_service)
+    task_execution_interactor = TaskExecutionInteractor(task_execution_service)
 
-    # Initialize and start Listener
-    listener = Listener(audio_source, audio_processor, hotword_detector, task_manager)
-    listener.start()
+    # Set initial state to 'idle' and load the 'tiny' model
+    task_execution_service.switch_state('setup')
+
+    # Start conversation
+    conversation_interactor.start_conversation(audio_source, audio_processor)
 
 if __name__ == "__main__":
     main()

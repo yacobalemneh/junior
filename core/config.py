@@ -1,15 +1,12 @@
 import json
+import os
 
 class Config:
     def __init__(self):
-        self.config = {}
-        self.load()
+        self.hotwords = self.load_json('config/hotwords.json')
+        self.responses = self.load_json('config/responses.json')
+        self.LOGGING_LEVEL = os.environ.get('LOG_LEVEL', 'INFO').upper()
 
-    def load(self):
-        with open('config/hotwords.json', 'r') as f:
-            self.config['hotwords'] = json.load(f)
-        with open('config/responses.json', 'r') as f:
-            self.config['responses'] = json.load(f)
-
-    def get(self, key, default=None):
-        return self.config.get(key, default)
+    def load_json(self, path):
+        with open(path, 'r') as f:
+            return json.load(f)
