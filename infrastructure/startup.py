@@ -1,4 +1,4 @@
-from core.transcription.model import TranscriptionModel
+from core.transcription.transcription_model import TranscriptionModel
 
 class Startup:
     def load(self):

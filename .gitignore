@@ -40,3 +40,6 @@ TODO.md
 general.md
 features.txt
 com.yacob.junior.plist
+
+# Ignore docs directory
+/docs/*
