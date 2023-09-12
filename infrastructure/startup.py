@@ -1,7 +1,9 @@
-from core.transcription.transcription_model import TranscriptionModel
+from core.config import Config
 
-class Startup:
-    def load(self):
-        # TODO: Implement logic to add the daemon to system startup
-        print("Loading daemon into system startup...")
-        # This is a placeholder. Actual implementation will depend on your OS.
+import coloredlogs
+
+def setup_logging():
+    config = Config()
+    coloredlogs.install(level=config.LOGGING_LEVEL, fmt='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+def setup():
+    setup_logging()

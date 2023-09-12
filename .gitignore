@@ -6,6 +6,7 @@ com.yacob.junior.plist
 /docs/*
 docs/*
 .env
+structure.txt
 
 # Ignore Python build artifacts
 __pycache__/

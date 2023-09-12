@@ -14,14 +14,17 @@ The project is structured as follows:
 
 ### Core
 
-The core layer contains the business logic of the application. It is further divided into domain and data_source.
+The core layer contains the business logic of the application. It is further divided into application, data_source, domain, infrastructure, and services.
 
-- domain: Contains the domain models and services.
+- application: Contains the controllers and interactors.
 - data_source: Contains the data models and repositories.
+- domain: Contains the domain models, repositories, and services.
+- infrastructure: Contains the audio, interaction, and ui.
+- services: Contains the models, openai, text_to_speech, and utils.
 
 ### Infrastructure
 
-The infrastructure layer contains the technical details of the application. It is further divided into audio, interaction, logging, startup, and ui.
+The infrastructure layer contains the technical details of the application. It is further divided into utils.
 
 ### Application
 
@@ -66,3 +69,86 @@ The application uses Python's built-in logging module for logging. The logging l
 ## Conclusion
 
 Junior is a voice assistant application built using Python and a clean architecture approach. It separates concerns into distinct layers, making the code easier to understand and maintain.
+
+## Project Structure
+
+```
+junior/
+├── README.md
+├── com.yacob.junior.plist
+├── config
+├── features
+│   ├── conversation
+│   │   ├── domain
+│   │   │   ├── detection_result.py
+│   │   ├── data
+│   │   │   ├── audio_source.py
+│   │   │   ├── audio_processor.py
+│   │   ├── core
+│   │   │   ├── conversation_service.py
+│   │   ├── interactors
+│   │   │   ├── conversation_interactor.py
+│   │   ├── transcription
+│   │   │   ├── domain
+│   │   │   │   ├── transcription.py
+│   │   │   ├── data
+│   │   │   │   ├── transcription_model.py
+│   │   │   ├── core
+│   │   │   │   ├── transcription_service.py
+│   │   │   ├── interactors
+│   │   │   │   ├── transcription_interactor.py
+│   │   ├── hotword_detection
+│   │   │   ├── domain
+│   │   │   │   ├── hotword.py
+│   │   │   ├── data
+│   │   │   │   ├── hotword_detection_model.py
+│   │   │   ├── core
+│   │   │   │   ├── hotword_detection_service.py
+│   │   │   ├── interactors
+│   │   │   │   ├── hotword_detection_interactor.py
+│   │   ├── task_execution
+│   │   │   ├── domain
+│   │   │   │   ├── task.py
+│   │   │   ├── data
+│   │   │   │   ├── task_manager.py
+│   │   │   ├── core
+│   │   │   │   ├── task_execution_service.py
+│   │   │   ├── interactors
+│   │   │   │   ├── task_execution_interactor.py
+│   ├── dictation
+│   │   ├── domain
+│   │   │   ├── dictation.py
+│   │   ├── data
+│   │   ├── core
+│   │   ├── interactors
+│   ├── command
+│   │   ├── domain
+│   │   ├── data
+│   │   ├── core
+│   │   ├── interactors
+│   ├── task
+│   │   ├── domain
+│   │   ├── data
+│   │   ├── core
+│   │   ├── interactors
+│   ├── text_to_speech
+│   │   ├── azure
+│   │   │   ├── domain
+│   │   │   │   ├── azure_text_to_speech.py
+│   │   │   ├── data
+│   │   │   │   ├── speech_config.py
+│   │   │   │   ├── audio_config.py
+│   │   │   ├── core
+│   │   │   │   ├── azure_text_to_speech_service.py
+│   │   │   ├── interactors
+│   ├── openai_chat
+│   │   ├── domain
+│   │   ├── data
+│   │   ├── core
+│   │   │   ├── chat_service.py
+│   │   ├── interactors
+│   ├── main.py
+├── infrastructure
+│   ├── utils
+├── tests
+└── watcher.py

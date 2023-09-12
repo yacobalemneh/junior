@@ -1,8 +1,11 @@
 import logging
+import os
 
-class Logging:
-    def __init__(self):
-        logging.basicConfig(level=logging.INFO)
+LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO').upper()
 
-    def log(self, message):
-        logging.info(message)
+logging.basicConfig(
+    level=LOG_LEVEL,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+
+logger = logging.getLogger(__name__)
