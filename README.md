@@ -63,16 +63,7 @@ We'll review your contribution and provide feedback. Once approved, your changes
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
-## Acknowledgments
+## Inspiration
 Junior was inspired by the growing demand for intelligent voice assistants and the advancements in natural language processing and speech recognition technologies. We'd like to acknowledge the open-source community and the developers of the libraries and frameworks used in this project, including:
-
-- [Whisper](https://github.com/openai/whisper) for speech recognition
-- [Azure Cognitive Services](https://azure.microsoft.com/en-us/products/cognitive-services/) and [Google Cloud Text-to-Speech](https://cloud.google.com/text-to-speech) for text-to-speech capabilities
-- [OpenAI](https://openai.com/) for the language model integration
-- [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/) for audio processing
-- [Speech Recognition](https://pypi.org/project/SpeechRecognition/) for speech recognition
-- [Keyboard](https://pypi.org/project/keyboard/) for keyboard interaction
-- [Pyperclip](https://pypi.org/project/pyperclip/) for clipboard interaction
-- [Coloredlogs](https://pypi.org/project/coloredlogs/) for colored logging
 
 
